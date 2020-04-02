@@ -4,6 +4,11 @@
 
 In this Lecture 9 example, we connect [Laravel blog](https://github.com/iuthub/iuthub-ip2020_lecture8_blog) that we developed in Lecture 8 to database using Laravel's Eloquent models, Migration tools and Relationships.
 
+## Youtube Video:
+
+- https://youtu.be/Zi8hOCu7d-4
+
+
 ## How to setup on your computer
 
 Go through following steps:
