@@ -1,8 +1,8 @@
 <img src="https://i.imgur.com/ZQ0vByD.png">
 
-## Simple Laravel Blog
+## Laravel Blog With Database
 
-This is an example of a simple blog application using Laravel framework. We have created it as an example for Lecture 8 in Internet Programming module at IUT 2020.
+In this Lecture 9 example, we connect [Laravel blog](https://github.com/iuthub/iuthub-ip2020_lecture8_blog) that we developed in Lecture 8 to database using Laravel's Eloquent models, Migration tools and Relationships.
 
 ## How to setup on your computer
 
