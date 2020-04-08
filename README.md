@@ -6,7 +6,7 @@ In this Lecture 10 example, we integrate Laravel's authentication and authorizat
 
 ## Youtube Video:
 
-- https://youtu.be/Zi8hOCu7d-4
+- https://youtu.be/pn0F9DW-Ga8
 
 
 ## How to setup on your computer
