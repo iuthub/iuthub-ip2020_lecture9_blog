@@ -1,4 +1,4 @@
-@extends('layouts.admin_layout')
+@extends('layouts.master')
 
 
 @section('content')
@@ -32,13 +32,19 @@
 				<tr>
 					<td>Tags</td>
 					<td>
+						<ul style="list-style-type: none;">
+							{{-- @php(dd($post->tags->contains(2))) --}}
 						@foreach($tags as $tag)
-
-							{{ $tag->name }} <input form='postForm' type="checkbox" name="tags[]"
-							{{ 'checked' ? $post->tags->contains($tag->id): '' }}
-							value="{{ $tag->id }}">
-
+							<li>
+								<input form='postForm' type="checkbox" name="tags[]"
+								@if($post->tags->contains($tag->id))
+									checked
+								@endif
+								value="{{ $tag->id }}">
+								{{ $tag->name }}
+							</li>
 						@endforeach
+						</ul>
 					</td>
 				</tr>
 			</table>

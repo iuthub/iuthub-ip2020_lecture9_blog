@@ -10,9 +10,7 @@
             <h2>{{ $post->title }}</h2>
 
             <h3>
-                @foreach($post->tags as $tag)
-                    {{ $tag->name }} &nbsp; |
-                @endforeach
+                {{ $post->tags->implode('name', " | ") }}
             </h3> 
 
         </div>
@@ -21,7 +19,7 @@
         </div>
         <div class="article-footer">
             <div class="article-meta">
-                Edited: {{ $post->updated_at }}
+               Author: {{$post->user->name }} &nbsp; | &nbsp; Edited: {{ $post->updated_at->format('d/m/Y') }}
             </div>
             <div class="article-actions">
                 <a href="{{ route('blogLikePost', ['id'=> $post->id]) }}">Likes 

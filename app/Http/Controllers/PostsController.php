@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PostsRepo;
 use App\Post;
 use App\Like;
 use App\Tag;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Session\Store;
 
 
@@ -60,7 +61,7 @@ class PostsController extends Controller
 
     public function getAdminEdit($id) {
     	// $postsRepo = new PostsRepo($session);
-    	$post = Post::find($id);
+    	$post = Post::with('tags')->find($id);
         $tags = Tag::all();
 
     	return view('admin.edit', [
@@ -75,26 +76,11 @@ class PostsController extends Controller
 			'content' => 'required|min:5'
 		]);
 
-    	// $postsRepo = new PostsRepo($session);
-    	// $postsRepo->updatePost(
-    	// 	$req->input('id'),
-    	// 	$req->input('title'),
-    	// 	$req->input('body')
-    	// );
         
         $post = Post::find($req->input('id'));
         $post->title = $req->input('title');
         $post->content = $req->input('content');
         $post->save();
-
-
-
-        // Post::where('id', $req->input('id'))->update([
-        //     'title'=> $req->input('title'),
-        //     'content'=> $req->input('content')
-        // ]);
-        // $post->tags->detach();
-        // $post->tags->attach($req->input('tags')===null?[]:$req->input('tags'));
 
         $post->tags()->sync($req->input('tags')===null?[]:$req->input('tags'));
 
@@ -118,13 +104,16 @@ class PostsController extends Controller
             'content' => 'required|min:5'
         ]);
 
+        $user = Auth::user();
+        if(!$user) {
+            return redirect()->back();
+        }
 
         $post = new Post([
             'title'=> $req->input('title'),
             'content' => $req->input('content')
         ]);
-        $post->save();
-
+        $user->posts()->save($post);
         $post->tags()->attach($req->input('tags')===null?[]:$req->input('tags'));
 
         return redirect()->route('adminIndex')->with([
