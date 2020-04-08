@@ -16,7 +16,7 @@ div {
 	padding: 10px;
 }
 
-input[type='submit'], input[type='text'], input[type='password'], .btn {
+input[type='submit'], input[type='text'], input[type='email'], input[type='password'], .btn {
 	border: 1px solid blue;
 	font-size: 12pt;
 	background-color: lightgrey;
@@ -30,7 +30,7 @@ input[type='submit'], input[type='text'], input[type='password'], .btn {
 	text-align: center;
 }
 
-input[type='text'], input[type='password'] {
+input[type='text'], input[type='password'], input[type='email'] {
 	background-color: white;
 	text-align: left;
 	width: 150px;
@@ -54,6 +54,8 @@ input[type='text'], input[type='password'] {
 
 .navitem {
 	margin: 5px;
+	display: flex;
+	align-items: center;
 }
 
 .article {
@@ -76,6 +78,10 @@ input[type='text'], input[type='password'] {
 	background-color: #ff9999;
 	border: 1px solid #ff0000;
 	box-shadow: 3px 3px 5px 0px rgba(189,179,189,1);
+}
+
+.invalid-feedback {
+	color: red;
 }
 
 .article:first-child {
