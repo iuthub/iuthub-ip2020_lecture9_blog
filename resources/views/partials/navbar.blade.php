@@ -46,6 +46,10 @@
 		</div>
 	@else
 		<div class="navitem">
+			Welcome {{Auth::user()->name}}!
+		</div>
+
+		<div class="navitem">
                 <a href="{{ route('adminCreate')}}" class="btn">New Post</a>
         </div>
         <div class="navitem">

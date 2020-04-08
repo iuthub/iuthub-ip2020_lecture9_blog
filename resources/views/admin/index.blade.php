@@ -5,6 +5,16 @@
 
 @include('partials.info_block')
 
+@if(Session::has('error'))
+<div class="article error">
+    <div class="article-body">
+        <ul>
+            {{Session::get('error')}}
+        </ul>
+    </div>
+</div>
+@endif
+
 @foreach($posts as $post)
     <div class="article">
         <div class="article-header">

@@ -3,6 +3,16 @@
 @section('content')
 
 
+@if(Session::has('error'))
+<div class="article error">
+    <div class="article-body">
+       	<ul>
+       		{{Session::get('error')}}
+       	</ul>
+    </div>
+</div>
+@endif
+
 @include('partials.error_block')
 
 <div class="article">

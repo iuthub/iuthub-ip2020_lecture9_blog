@@ -39,12 +39,14 @@ Route::get('/postsByTitle/{title}', [
 
 Route::get('/about', [
 	'uses' => 'PostsController@getOthersAbout',
-	'as' => 'othersAbout'
+	'as' => 'othersAbout',
+	'middleware' => ['redirectAbout'] // remove this code if want to see about page
 ]);
 
 
 Route::group([
-	'prefix'=>'admin'
+	'prefix'=>'admin',
+	'middleware' => ['auth', 'verified']
 ], function(){
 
 	Route::get('/', [
@@ -81,4 +83,4 @@ Route::group([
 		
 });
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
