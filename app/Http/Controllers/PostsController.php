@@ -9,6 +9,7 @@ use App\Tag;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Session\Store;
+use Illuminate\Support\Facades\Gate;
 
 
 class PostsController extends Controller
@@ -71,13 +72,21 @@ class PostsController extends Controller
     }
 
     public function postAdminEdit(Request $req) {
+        
+
     	$this->validate($req, [
 			'title' => 'required|min:5',
 			'content' => 'required|min:5'
 		]);
 
-        
         $post = Post::find($req->input('id'));
+
+        if (Gate::denies('update-post', $post)) {
+            return redirect()->back()->with([
+                'info' => 'You cannot modify this post.'
+            ]);
+        }
+
         $post->title = $req->input('title');
         $post->content = $req->input('content');
         $post->save();
@@ -122,10 +131,15 @@ class PostsController extends Controller
     }
 
     public function getAdminDelete($id) {
-        // $postsRepo = new PostsRepo($session);
-        // $postsRepo->deletePost($id);
+        $post = Post::find($id);
 
-        Post::find($id)->delete();
+        if (Gate::denies('update-post', $post)) {
+            return redirect()->back()->with([
+                'info' => 'You cannot delete this post.'
+            ]);
+        }
+
+        $post->delete();
 
         return redirect()->route('adminIndex')->with([
             'info'=>'Successfully deleted!  Post id is '. $id

@@ -44,7 +44,8 @@ Route::get('/about', [
 
 
 Route::group([
-	'prefix'=>'admin'
+	'prefix'=>'admin',
+	'middleware' => ['auth', 'verified']
 ], function(){
 
 	Route::get('/', [
@@ -81,4 +82,4 @@ Route::group([
 		
 });
 
-Auth::routes();
+Auth::routes(['verify'=>true]);

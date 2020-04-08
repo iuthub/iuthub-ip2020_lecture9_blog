@@ -46,6 +46,10 @@
 	<div class="navitem">
             <a href="{{ route('adminCreate')}}" class="btn">New Post</a>
     </div>
+
+	<div class="navitem">
+            <a href="{{ route('adminIndex')}}" class="btn">Edit Posts</a>
+    </div>
 	<div class="navitem">
 		<form id="loginForm" action="{{ route('logout') }}" method="post">
 			@csrf
